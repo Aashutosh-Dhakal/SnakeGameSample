@@ -9,25 +9,20 @@ import sys
 def run():
     
     def install(package):
-        """Install a package using pip."""
         subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
     def import_or_install(package):
-        """Import a package, installing it first if necessary."""
         try:
             __import__(package)
         except ImportError:
             install(package)
             __import__(package)
 
-    # List of packages required for your script
     required_packages = ['pygame']
 
-    # Install and import each required package
     for package in required_packages:
         import_or_install(package)
 
-    # Your main code goes here
     print("All packages are installed and imported successfully.")
 
 
